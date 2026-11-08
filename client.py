@@ -1,27 +1,27 @@
 import socket, sys
 
+SERVER_ADDRESS = '127.0.0.1'
+SERVER_PORT = 9999
+
 class NoNickPassedException(Exception):
     pass
 
 try:
     whoami = sys.argv[1]
 except IndexError:
-    raise NoNickPassedException("Usage: python3 client.py <nick>")
+    raise NoNickPassedException("Usage: python3 client.py <nick> max 99 chars")
 
 MAX_WHOAMI_LENGTH = 16
 
-if len(whoami) <= 0:
-    raise ValueError("Usage: python3 client.py <nick>") from None
+nick_length = len(whoami)
 
-elif len(whoami) > MAX_WHOAMI_LENGTH:
-    whoami = whoami[:MAX_WHOAMI_LENGTH]
+if nick_length > 99:
+    raise NoNickPassedException("Usage: python3 client.py <nick> max 99 chars")
 
-elif len(whoami) < MAX_WHOAMI_LENGTH:
-    whoami = whoami + ('0' * (MAX_WHOAMI_LENGTH - len(whoami)))
-
-
-SERVER_ADDRESS = '127.0.0.1'
-SERVER_PORT = 9999
+if nick_length < 10:
+    nick_length = f"0{nick_length}"
+else:
+    nick_length = str(nick_length)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((SERVER_ADDRESS, SERVER_PORT))
@@ -29,6 +29,6 @@ client.connect((SERVER_ADDRESS, SERVER_PORT))
 with client:
     while(True):
         message = input("Message: ")
-        abc = whoami + message
-        message_bytes = abc.encode()
+        output_message = nick_length + whoami + message
+        message_bytes = output_message.encode()
         client.sendall(message_bytes)
