@@ -17,3 +17,11 @@ Next steps is going full encryption with pairs of public/private keys as showed 
 
 
 Not finished :'(
+
+# TODO
+- [ ] public/private key exchange
+- [ ] actually use encryption
+- [ ] display messages on clients (really? :D)
+- [ ] terraform with whole infra as a code (it's just EC2 with small 1 program in python)
+- [ ] multiple clients - basically multithreading, but as simple as possible
+- [ ] stress testing - how many clients can that simple server on ec2 (large) can handle?
