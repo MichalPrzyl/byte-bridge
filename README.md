@@ -1,6 +1,6 @@
 # Byte-bridge: Custom TCP protocol
 
-Simple TCP procotol to experiment with creating my own data transportation layer (in much much simple way).
+A simple TCP-based protocol to experiment with designing my own application-layer communication protocol (in a very simplified way).
 
 For now it's just custom bytes send by tcp, with custom parsing.
 The idea is that we send lenght of the nickname in first 2 bytes (0 < n < 99).
