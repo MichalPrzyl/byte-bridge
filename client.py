@@ -1,10 +1,17 @@
 import socket, sys
 
-whoami = sys.argv[1]
+class NoNickPassedException(Exception):
+    pass
+
+try:
+    whoami = sys.argv[1]
+except IndexError:
+    raise NoNickPassedException("Usage: python3 client.py <nick>")
+
 MAX_WHOAMI_LENGTH = 16
 
 if len(whoami) <= 0:
-    raise ValueError("set whoami")
+    raise ValueError("Usage: python3 client.py <nick>") from None
 
 elif len(whoami) > MAX_WHOAMI_LENGTH:
     whoami = whoami[:MAX_WHOAMI_LENGTH]
