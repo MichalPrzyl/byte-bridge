@@ -14,3 +14,6 @@ The idea is showed below
 Next steps is going full encryption with pairs of public/private keys as showed below.
 
 <img src="screens/protocol-graph.png" width="700"></img>
+
+
+Not finished :'(
